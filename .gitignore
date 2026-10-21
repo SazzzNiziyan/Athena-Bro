@@ -1,0 +1,6 @@
+node_modules/
+dist/
+backend/.env
+frontend/.env.local
+.DS_Store
+00015-Athena.excalidraw
