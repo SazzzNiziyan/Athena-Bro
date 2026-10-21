@@ -10,7 +10,7 @@ cp .env.example .env
 npm run dev
 ```
 
-Set distinct random values for `ACCESS_TOKEN_SECRET` and `REFRESH_TOKEN_SECRET` in `.env`. The API listens on port `5000` by default. Start the Vite client separately from `../frontend`; its `/api` proxy forwards to this server, so no CORS middleware is needed in local development.
+Set distinct random values for `ACCESS_TOKEN_SECRET` and `REFRESH_TOKEN_SECRET` in `.env`. The API listens on port `5001` by default. Start the Vite client separately from `../frontend`; its `/api` proxy forwards to this server, so no CORS middleware is needed in local development.
 
 ## Routes
 
@@ -45,3 +45,13 @@ Invalid login credentials always return `401` with message `Invalid credentials`
 ```json
 { "success": false, "message": "Validation failed", "errors": [{ "field": "email", "message": "Enter a valid email address" }] }
 ```
+
+## Models
+
+- `User` stores the bcrypt password hash, profile fields, timestamps, and preferences. Email is unique and normalized. Refresh tokens are not stored on the user.
+- `Session` stores one SHA-256 refresh-token hash per device, user-agent metadata, expiry, revocation time, and the replacement-session reference. `REFRESH_TOKEN_TTL` is seconds; the default is `604800` (seven days).
+- `Conversation` and `Message` include ownership references, model/title state, generation state, message status/usage/latency, and the requested search/share indexes.
+
+Configure `BEDROCK_DEFAULT_MODEL` and the comma-separated `BEDROCK_MODEL_ALLOW_LIST` in `.env`. The default model must be present in the allow-list. The example allows `anthropic.claude-3-5-sonnet-20241022-v2:0`.
+
+Use `createConversationWithFirstMessage` from `src/DAO/conversation.dao.js` to persist the first user message before the conversation; the model also rejects direct creation without that message. Conversation/message reads or writes must always include the authenticated `userId`. Message creation/update paths must also update `lastMessageAt`; AI title generation may only replace titles whose `titleSource` is `placeholder`.
