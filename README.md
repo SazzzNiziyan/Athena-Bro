@@ -61,48 +61,34 @@ flowchart LR
     style Bedrock fill:#f59e0b,stroke:#fde68a,color:#111827
 ```
 
-## 🎥 Screenshots, GIFs, and live demo
+## 🌐 Live demo and local preview
 
-> The repository does not currently include screenshot or GIF assets, and no deployed demo URL has been configured yet. Add real media files to `docs/media/` and replace the placeholders below when they are available.
+No deployed demo or verified screenshots are available yet, so this README intentionally avoids broken image and GIF placeholders.
 
-### 🖼️ Product preview
-
-| Conversation workspace | Authentication flow |
-| --- | --- |
-| ![Athena Bro conversation workspace](docs/media/conversation-workspace.png) | ![Athena Bro authentication flow](docs/media/authentication-flow.png) |
-
-### ✨ Interactive walkthrough
-
-![Athena Bro interactive walkthrough](docs/media/athena-bro-walkthrough.gif)
-
-### 🌐 Live demo
-
-<div align="center">
-
-[![Open the Athena Bro demo](https://img.shields.io/badge/🚀_Open_live_demo-7c3aed?style=for-the-badge)](https://github.com/SazzzNiziyan/Athena-Bro)
-
-</div>
-
-The live-demo button currently links to this repository until a hosted frontend is available. For a local interactive preview:
+To preview Athena Bro locally:
 
 ```bash
+# Terminal 1 — backend
+cd backend
+npm install
+cp .env.example .env
+npm run dev
+```
+
+```bash
+# Terminal 2 — frontend
 cd frontend
 npm install
 npm run dev
 ```
 
-Then open the Vite URL shown in your terminal.
+Open the Vite URL printed in your terminal. Once a hosted frontend is available, add its URL here:
 
-<details>
-<summary><strong>How to add media</strong></summary>
+```md
+[![Open the Athena Bro demo](https://img.shields.io/badge/🚀_Open_live_demo-7c3aed?style=for-the-badge)](https://your-deployed-frontend.example.com)
+```
 
-1. Create a `docs/media/` directory.
-2. Add optimized `.png`, `.webp`, or `.gif` files.
-3. Use descriptive names such as `conversation-workspace.png` and `athena-bro-walkthrough.gif`.
-4. Replace the live-demo URL with the deployed frontend URL.
-5. Keep sensitive data, API keys, tokens, and private conversations out of screenshots.
-
-</details>
+> Screenshots and animated walkthroughs can be added later under `docs/media/` after capturing the real application. Avoid including API keys, access tokens, private conversations, or other sensitive information.
 
 ## 🧩 Core capabilities
 
